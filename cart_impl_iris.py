@@ -244,6 +244,14 @@ while queue:  # prune and cross validate
         nextTree.merge_subTree(bestNode)
         queue.append(nextTree)
 
+predictTrue = 0
+for i in range(len(X_train)):
+    curPredict = bestTree.predict(X_train[i])
+    if curPredict == y_train[i]:
+        predictTrue += 1
+acc = predictTrue / len(y_train)
+print("the accuracy of decision tree on training data", acc)
+
 # apply the selected decision tree to testing sets
 predictTrue = 0
 for i in range(len(X_test)):
@@ -251,4 +259,4 @@ for i in range(len(X_test)):
     if curPredict == y_test[i]:
         predictTrue += 1
 acc = predictTrue / len(y_test)
-print("the accuracy of decision tree", acc)
+print("the accuracy of decision tree on testing data", acc)
